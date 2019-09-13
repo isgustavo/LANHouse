@@ -37,9 +37,10 @@ namespace ThreeHornDino.LanHouse
             }
 
             int clientID = NetworkTransport.AddHost(networkManager.Topology, 0);
-            NetworkTransport.Connect(clientID, NetworkManager.DEFAULT_ADDRESS, NetworkManager.PORT, 0, out error);
 
-            networkManager.LocalClient = new NetworkClient(clientID, hostID);
+            NetworkTransport.Connect(clientID, NetworkManager.LOCALHOST_ADDRESS, NetworkManager.PORT, 0, out error);
+
+            networkManager.LocalClient = new NetworkClient(Player.Current.PlayerName, clientID, hostID);
             networkManager.Clients.Add(clientID, networkManager.LocalClient);
         }
 
@@ -57,22 +58,13 @@ namespace ThreeHornDino.LanHouse
                 case NetworkEventType.ConnectEvent:
                     if (!networkManager.Clients.ContainsKey(connectionId))
                     {
-                        networkManager.Clients.Add(connectionId, new NetworkClient(connectionId));
-                        networkManager.SendConnectedClients();
+                        //networkManager.Clients.Add(connectionId, new NetworkClient(connectionId));
+                        //networkManager.SendConnectedClients();
                     }
                     break;
                 case NetworkEventType.DataEvent:
-                    //if (IsServer)
-                    //{
-
-                    //}
-                    //else
-                    //{
-                    //    OnClientReceiveDataEvent(recBuffer);
-                    //}
                     break;
                 case NetworkEventType.DisconnectEvent:
-                    //Debug.Log($"Client id: {connectionId} has disconnected {channel}");
                     break;
             }
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace ThreeHornDino.Sample
@@ -19,12 +18,7 @@ namespace ThreeHornDino.Sample
 
         private void OnJoinRoom()
         {
-           // StartCoroutine(GameSession.Current.NetworkManager.JoinRoomCoroutine((error) => { OnJoinRoomCompleted(error); }));
-        }
-
-        public void OnJoinRoomCompleted(byte error)
-        {
-            Debug.Log($"Join Room completed");
+            //GameSession.Current.NetworkManager.JoinRoom();
         }
     }
 

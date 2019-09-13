@@ -36,15 +36,11 @@ namespace ThreeHornDino.LanHouse
 
             if (networkEvent == NetworkEventType.BroadcastEvent)
             {
-                NetworkTransport.GetBroadcastConnectionMessage(broadcastHostId, msgInBuffer, NetworkManager.MAX_MESSAGE_SIZE, out _, out error);
+                //NetworkTransport.GetBroadcastConnectionMessage(broadcastHostId, msgInBuffer, NetworkManager.MAX_MESSAGE_SIZE, out _, out error);
 
                 NetworkTransport.GetBroadcastConnectionInfo(broadcastHostId, out ipAddress, out _, out error);
 
-                networkManager.Topology = new HostTopology(networkManager.ConnConfig, NetworkManager.MAX_CONNECTIONS);
-
-                int clientID = NetworkTransport.AddHost(networkManager.Topology, 0);
-
-                NetworkTransport.Connect(clientID, ipAddress, NetworkManager.PORT, 0, out _);
+                networkManager.Address = ipAddress;
 
                 networkManager.States.ChangeState<NetworkClientState>();
             }

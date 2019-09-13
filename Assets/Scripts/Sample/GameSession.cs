@@ -10,7 +10,7 @@ namespace ThreeHornDino.Sample
     {
         public static GameSession Current { get; private set; }
 
-        public NetworkManager NetworkManager { get; private set; }
+        public SampleNetworkManager NetworkManager { get; private set; }
 
         private void Awake()
         {
@@ -43,7 +43,7 @@ namespace ThreeHornDino.Sample
 
         private void LoadManagers()
         {
-            NetworkManager = NetworkManager.Init();
+            NetworkManager = new SampleNetworkManager();
         }
 
         private void OnDestroy()
